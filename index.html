@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catatan Harian Saya</title>
+    <title>Ulasan Anime: Jujutsu Kaisen S2</title>
     <!-- Memuat Tailwind CSS untuk styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -11,168 +11,126 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f7f9fb;
-            color: #1e293b;
+            background-color: #0d1117; /* Latar belakang gelap untuk efek sinematik */
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        .container-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 <body class="min-h-screen">
-    <div id="app" class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div id="app" class="max-w-6xl mx-auto container-shadow bg-[#161b22]">
 
-        <!-- HEADER BLOG -->
-        <header class="text-center py-10 mb-8 bg-white shadow-md rounded-xl">
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-600 tracking-tight">
-                Catatan Harian
-            </h1>
-            <p class="mt-2 text-lg text-gray-500">
-                Kumpulan pemikiran, petualangan, dan ulasan saya.
-            </p>
-            <nav class="mt-4 space-x-4">
-                <a href="#posts" class="text-blue-600 hover:text-blue-800 font-medium">Beranda</a>
-                <a href="#" onclick="showMessage('Kontak: email@contoh.com', 'Info')" class="text-blue-600 hover:text-blue-800 font-medium">Kontak</a>
-            </nav>
+        <!-- HEADER / BANNER UTAMA (Latar Belakang Gambar) -->
+        <header class="relative h-[450px] sm:h-[600px] overflow-hidden">
+            <!-- Ini adalah placeholder untuk gambar latar belakang JJK S2 yang Anda unggah -->
+            <img src="https://placehold.co/1024x600/1f2937/ffffff?text=Jujutsu+Kaisen+S2+Wallpaper" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/1024x600/1f2937/ffffff?text=Jujutsu+Kaisen+S2+Wallpaper'" 
+                 alt="Gambar Utama Anime Jujutsu Kaisen Season 2" 
+                 class="absolute inset-0 w-full h-full object-cover opacity-60">
+
+            <div class="relative z-10 pt-20 pb-10 px-4 sm:px-8 bg-gradient-to-t from-[#161b22] to-transparent h-full flex flex-col justify-end">
+                <h1 class="text-5xl sm:text-7xl font-extrabold text-white tracking-wider">
+                    JUJUTSU KAISEN
+                </h1>
+                <p class="mt-2 text-md text-gray-300">
+                    2023 | Shounen | Season 2 (23 eps) | Anime | Bahasa: Jepang
+                </p>
+            </div>
         </header>
 
-        <!-- AREA PESAN (PENGGANTI ALERT) -->
-        <div id="message-area" class="hidden fixed top-5 right-5 z-50">
-            <!-- Pesan akan muncul di sini -->
-        </div>
+        <main class="p-4 sm:p-8 lg:p-12">
+            
+            <!-- BAGIAN SINOPIS & DETAIL PRODUKSI -->
+            <section class="grid md:grid-cols-3 gap-8 mb-12">
+                
+                <!-- KOLOM KIRI: Poster & Info Pendek -->
+                <div class="md:col-span-1">
+                    <div class="bg-gray-700 w-full h-auto aspect-[2/3] rounded-lg overflow-hidden mb-4">
+                         <!-- Placeholder Poster Kecil -->
+                        <img src="https://placehold.co/200x300/374151/ffffff?text=POSTER+S2" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/200x300/374151/ffffff?text=POSTER+S2'" 
+                             alt="Poster Musim 2" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-400">
+                        <p><strong class="text-white">Penulis:</strong> Hiroshi Seko</p>
+                        <p><strong class="text-white">Studio:</strong> MAPPA</p>
+                        <p><strong class="text-white">Genre:</strong> Aksi, Supernatural, Sekolah</p>
+                    </div>
+                </div>
 
-        <!-- TAMPILAN DETAIL POST UTAMA -->
-        <section id="post-detail-view" class="bg-white p-6 shadow-xl rounded-xl mb-12 border-l-4 border-blue-500">
-            <h2 class="text-3xl font-bold text-gray-800 mb-2" id="detail-title">Selamat Datang di Blog Saya!</h2>
-            <div class="text-sm text-gray-500 mb-4" id="detail-meta">
-                Posting Pertama | 18 Oktober 2025
-            </div>
-            <p class="text-gray-700 leading-relaxed" id="detail-content">
-                Silakan klik salah satu judul artikel di bawah ini untuk melihat detail lengkapnya di sini. Saya harap Anda menemukan sesuatu yang menarik untuk dibaca!
-            </p>
-        </section>
+                <!-- KOLOM KANAN: Sinopsis dan Cast -->
+                <div class="md:col-span-2">
+                    <h2 class="text-3xl font-bold text-red-500 mb-4 border-b border-gray-700 pb-2">
+                        Sinopsis: Insiden Shibuya
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed mb-6 text-justify">
+                        Kutukan dan pengguna kutukan, dipimpin oleh Suguru Geto, memulai apa yang kemudian dikenal sebagai 'Insiden Shibuya' dengan tujuan tunggal: menyegel Satoru Gojo. Misi ini mengakibatkan hilangnya nyawa para penyihir dan orang tak bersalah. Semua demi ambisi jahat untuk menciptakan dunia tanpa non-penyihir. (Anda bisa mengganti sinopsis ini dengan versi Anda!)
+                    </p>
+                    
+                    <h3 class="text-2xl font-semibold text-blue-400 mb-3">
+                        Pemeran Utama (Seiyuu)
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <p><strong class="text-white">Junya Enoki:</strong> Yuji Itadori</p>
+                        <p><strong class="text-white">Yuuma Uchida:</strong> Megumi Fushiguro</p>
+                        <p><strong class="text-white">Yuichi Nakamura:</strong> Satoru Gojo</p>
+                        <p><strong class="text-white">Takahiro Sakurai:</strong> Suguru Geto</p>
+                    </div>
+                    
+                    <blockquote class="mt-8 p-4 border-l-4 border-yellow-500 bg-gray-800 rounded-md">
+                        <p class="italic text-yellow-300">"Aku serius. Aku masih hidup dan menendang."</p>
+                    </blockquote>
+                </div>
+            </section>
 
-
-        <!-- DAFTAR POSTINGAN -->
-        <section id="posts" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <!-- Postingan akan dirender di sini oleh JavaScript -->
-        </section>
-
+            <!-- BAGIAN GALERI SCREENSHOT -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-red-500 mb-6 border-b border-gray-700 pb-2">
+                    Galeri & Momen Kunci
+                </h2>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <!-- Placeholder untuk 6 Screenshot, sesuaikan ukuran sesuai kebutuhan -->
+                    <div class="bg-gray-700 aspect-video rounded-md overflow-hidden">
+                        <img src="https://placehold.co/300x168/2d3748/ffffff?text=Momen+1" alt="Momen Kunci 1" class="w-full h-full object-cover hover:opacity-75 transition">
+                    </div>
+                    <div class="bg-gray-700 aspect-video rounded-md overflow-hidden">
+                        <img src="https://placehold.co/300x168/2d3748/ffffff?text=Momen+2" alt="Momen Kunci 2" class="w-full h-full object-cover hover:opacity-75 transition">
+                    </div>
+                    <div class="bg-gray-700 aspect-video rounded-md overflow-hidden">
+                        <img src="https://placehold.co/300x168/2d3748/ffffff?text=Momen+3" alt="Momen Kunci 3" class="w-full h-full object-cover hover:opacity-75 transition">
+                    </div>
+                    <div class="bg-gray-700 aspect-video rounded-md overflow-hidden">
+                        <img src="https://placehold.co/300x168/2d3748/ffffff?text=Momen+4" alt="Momen Kunci 4" class="w-full h-full object-cover hover:opacity-75 transition">
+                    </div>
+                    <div class="bg-gray-700 aspect-video rounded-md overflow-hidden">
+                        <img src="https://placehold.co/300x168/2d3748/ffffff?text=Momen+5" alt="Momen Kunci 5" class="w-full h-full object-cover hover:opacity-75 transition">
+                    </div>
+                    <div class="bg-gray-700 aspect-video rounded-md overflow-hidden">
+                        <img src="https://placehold.co/300x168/2d3748/ffffff?text=Momen+6" alt="Momen Kunci 6" class="w-full h-full object-cover hover:opacity-75 transition">
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+        
         <!-- FOOTER -->
-        <footer class="mt-12 py-6 text-center text-gray-500 text-sm border-t border-gray-200">
-            &copy; <span id="current-year"></span> Blog Pribadi. Dibuat dengan cinta dan kode.
+        <footer class="py-6 text-center text-gray-500 text-sm border-t border-gray-700 bg-[#0d1117]">
+            Ulasan Anime | Blog Penggemar | &copy; <span id="current-year"></span>
         </footer>
 
     </div>
 
     <script>
-        // Data Postingan Blog (gunakan Bahasa Indonesia)
-        const blogPosts = [
-            {
-                id: 1,
-                title: "Menguasai Kebiasaan Pagi dalam 5 Langkah",
-                date: "10 Okt 2025",
-                summary: "Memulai hari dengan rutinitas yang baik dapat mengubah hidup Anda. Baca panduan 5 langkah saya untuk menjadi orang pagi.",
-                content: "Kebiasaan pagi yang sukses tidak harus dimulai dengan bangun jam 5 pagi. Mulailah dengan perlahan, seperti minum segelas air segera setelah bangun dan melakukan peregangan ringan selama 10 menit. Langkah krusial adalah menghindari ponsel Anda selama 30 menit pertama. Fokus pada diri sendiri dan tujuan hari itu. Konsistensi adalah kuncinya!"
-            },
-            {
-                id: 2,
-                title: "Resensi: Buku 'Seni Hidup Minimalis'",
-                date: "28 Sep 2025",
-                summary: "Ulasan mendalam tentang buku yang mengubah pandangan saya tentang kepemilikan dan kebahagiaan sejati.",
-                content: "Buku ini bukan hanya tentang membuang barang, tetapi tentang membuat ruang untuk apa yang benar-benar penting. Penulis dengan cerdas memaparkan bagaimana konsumsi berlebihan telah membebani kita, baik secara finansial maupun mental. Saya sangat merekomendasikannya bagi siapa saja yang merasa terbebani oleh kekacauan."
-            },
-            {
-                id: 3,
-                title: "Panduan Pemula untuk Memasak Masakan Thailand",
-                date: "15 Sep 2025",
-                summary: "Saya baru saja kembali dari perjalanan ke Bangkok dan ingin berbagi resep dan tips favorit saya!",
-                content: "Rahasia masakan Thailand terletak pada keseimbangan rasa: manis, asam, asin, dan pedas. Jangan takut menggunakan bahan-bahan segar seperti serai, daun jeruk, dan cabai. Mulailah dengan Pad Thai, yang relatif mudah, sebelum beralih ke kari yang lebih kompleks. Selalu cicipi dan sesuaikan bumbunya!"
-            },
-            {
-                id: 4,
-                title: "Mengapa Belajar Bahasa Pemrograman Baru Penting",
-                date: "01 Sep 2025",
-                summary: "Berpikir untuk mengambil Python atau JavaScript? Inilah alasan mengapa memperluas keterampilan coding Anda selalu merupakan ide yang bagus.",
-                content: "Belajar bahasa pemrograman baru memaksa otak Anda untuk berpikir dengan cara yang berbeda, meningkatkan kemampuan memecahkan masalah. Ini juga membuka peluang karir baru dan memungkinkan Anda untuk tetap relevan di dunia teknologi yang terus berubah. Cobalah mengambil proyek kecil yang menarik untuk mempercepat pembelajaran Anda."
-            }
-        ];
-
-        // Referensi DOM
-        const postsContainer = document.getElementById('posts');
-        const detailTitle = document.getElementById('detail-title');
-        const detailMeta = document.getElementById('detail-meta');
-        const detailContent = document.getElementById('detail-content');
-        const messageArea = document.getElementById('message-area');
-
-        // Fungsi untuk menampilkan pesan di UI (Pengganti alert())
-        function showMessage(text, type = 'Success') {
-            const colors = {
-                'Success': 'bg-green-100 text-green-800 border-green-500',
-                'Error': 'bg-red-100 text-red-800 border-red-500',
-                'Info': 'bg-blue-100 text-blue-800 border-blue-500'
-            };
-
-            const colorClass = colors[type] || colors['Info'];
-
-            const messageHtml = `
-                <div class="p-4 rounded-lg shadow-xl border-l-4 ${colorClass} transition-opacity duration-300">
-                    <div class="font-bold">${type}</div>
-                    <div>${text}</div>
-                </div>
-            `;
-            messageArea.innerHTML = messageHtml;
-            messageArea.classList.remove('hidden');
-
-            setTimeout(() => {
-                messageArea.classList.add('hidden');
-                messageArea.innerHTML = '';
-            }, 3000); // Pesan hilang setelah 3 detik
-        }
-
-        // Fungsi untuk menampilkan detail postingan
-        function showPostDetail(post) {
-            detailTitle.textContent = post.title;
-            detailMeta.textContent = post.date;
-            detailContent.textContent = post.content;
-            
-            // Scroll ke tampilan detail
-            document.getElementById('post-detail-view').scrollIntoView({ behavior: 'smooth' });
-            
-            showMessage(`Melihat detail: "${post.title}"`, 'Info');
-        }
-
-        // Fungsi utama untuk merender daftar postingan
-        function renderPosts() {
-            postsContainer.innerHTML = ''; // Kosongkan kontainer
-
-            blogPosts.forEach(post => {
-                // Membuat elemen card untuk setiap postingan
-                const postElement = document.createElement('article');
-                postElement.className = "bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer flex flex-col justify-between";
-                
-                // Menambahkan event listener untuk menampilkan detail saat diklik
-                postElement.addEventListener('click', () => showPostDetail(post));
-
-                postElement.innerHTML = `
-                    <div>
-                        <h2 class="text-xl font-bold text-gray-800 mb-2 hover:text-blue-600 transition-colors">
-                            ${post.title}
-                        </h2>
-                        <p class="text-sm text-gray-500 mb-4">${post.date}</p>
-                        <p class="text-gray-600">${post.summary}</p>
-                    </div>
-                `;
-                postsContainer.appendChild(postElement);
-            });
-        }
-
         // Jalankan fungsi saat halaman dimuat
         window.onload = function () {
             // Set tahun di footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Render semua postingan
-            renderPosts();
         };
-
     </script>
 </body>
 </html>
