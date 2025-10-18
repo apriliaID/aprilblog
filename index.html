@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catatan Harian Saya</title>
+    <!-- Memuat Tailwind CSS untuk styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Menggunakan font Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div id="app" class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- HEADER BLOG -->
+        <header class="text-center py-10 mb-8 bg-white shadow-md rounded-xl">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-600 tracking-tight">
+                Catatan Harian
+            </h1>
+            <p class="mt-2 text-lg text-gray-500">
+                Kumpulan pemikiran, petualangan, dan ulasan saya.
+            </p>
+            <nav class="mt-4 space-x-4">
+                <a href="#posts" class="text-blue-600 hover:text-blue-800 font-medium">Beranda</a>
+                <a href="#" onclick="showMessage('Kontak: email@contoh.com', 'Info')" class="text-blue-600 hover:text-blue-800 font-medium">Kontak</a>
+            </nav>
+        </header>
+
+        <!-- AREA PESAN (PENGGANTI ALERT) -->
+        <div id="message-area" class="hidden fixed top-5 right-5 z-50">
+            <!-- Pesan akan muncul di sini -->
+        </div>
+
+        <!-- TAMPILAN DETAIL POST UTAMA -->
+        <section id="post-detail-view" class="bg-white p-6 shadow-xl rounded-xl mb-12 border-l-4 border-blue-500">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2" id="detail-title">Selamat Datang di Blog Saya!</h2>
+            <div class="text-sm text-gray-500 mb-4" id="detail-meta">
+                Posting Pertama | 18 Oktober 2025
+            </div>
+            <p class="text-gray-700 leading-relaxed" id="detail-content">
+                Silakan klik salah satu judul artikel di bawah ini untuk melihat detail lengkapnya di sini. Saya harap Anda menemukan sesuatu yang menarik untuk dibaca!
+            </p>
+        </section>
+
+
+        <!-- DAFTAR POSTINGAN -->
+        <section id="posts" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Postingan akan dirender di sini oleh JavaScript -->
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-12 py-6 text-center text-gray-500 text-sm border-t border-gray-200">
+            &copy; <span id="current-year"></span> Blog Pribadi. Dibuat dengan cinta dan kode.
+        </footer>
+
+    </div>
+
+    <script>
+        // Data Postingan Blog (gunakan Bahasa Indonesia)
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Menguasai Kebiasaan Pagi dalam 5 Langkah",
+                date: "10 Okt 2025",
+                summary: "Memulai hari dengan rutinitas yang baik dapat mengubah hidup Anda. Baca panduan 5 langkah saya untuk menjadi orang pagi.",
+                content: "Kebiasaan pagi yang sukses tidak harus dimulai dengan bangun jam 5 pagi. Mulailah dengan perlahan, seperti minum segelas air segera setelah bangun dan melakukan peregangan ringan selama 10 menit. Langkah krusial adalah menghindari ponsel Anda selama 30 menit pertama. Fokus pada diri sendiri dan tujuan hari itu. Konsistensi adalah kuncinya!"
+            },
+            {
+                id: 2,
+                title: "Resensi: Buku 'Seni Hidup Minimalis'",
+                date: "28 Sep 2025",
+                summary: "Ulasan mendalam tentang buku yang mengubah pandangan saya tentang kepemilikan dan kebahagiaan sejati.",
+                content: "Buku ini bukan hanya tentang membuang barang, tetapi tentang membuat ruang untuk apa yang benar-benar penting. Penulis dengan cerdas memaparkan bagaimana konsumsi berlebihan telah membebani kita, baik secara finansial maupun mental. Saya sangat merekomendasikannya bagi siapa saja yang merasa terbebani oleh kekacauan."
+            },
+            {
+                id: 3,
+                title: "Panduan Pemula untuk Memasak Masakan Thailand",
+                date: "15 Sep 2025",
+                summary: "Saya baru saja kembali dari perjalanan ke Bangkok dan ingin berbagi resep dan tips favorit saya!",
+                content: "Rahasia masakan Thailand terletak pada keseimbangan rasa: manis, asam, asin, dan pedas. Jangan takut menggunakan bahan-bahan segar seperti serai, daun jeruk, dan cabai. Mulailah dengan Pad Thai, yang relatif mudah, sebelum beralih ke kari yang lebih kompleks. Selalu cicipi dan sesuaikan bumbunya!"
+            },
+            {
+                id: 4,
+                title: "Mengapa Belajar Bahasa Pemrograman Baru Penting",
+                date: "01 Sep 2025",
+                summary: "Berpikir untuk mengambil Python atau JavaScript? Inilah alasan mengapa memperluas keterampilan coding Anda selalu merupakan ide yang bagus.",
+                content: "Belajar bahasa pemrograman baru memaksa otak Anda untuk berpikir dengan cara yang berbeda, meningkatkan kemampuan memecahkan masalah. Ini juga membuka peluang karir baru dan memungkinkan Anda untuk tetap relevan di dunia teknologi yang terus berubah. Cobalah mengambil proyek kecil yang menarik untuk mempercepat pembelajaran Anda."
+            }
+        ];
+
+        // Referensi DOM
+        const postsContainer = document.getElementById('posts');
+        const detailTitle = document.getElementById('detail-title');
+        const detailMeta = document.getElementById('detail-meta');
+        const detailContent = document.getElementById('detail-content');
+        const messageArea = document.getElementById('message-area');
+
+        // Fungsi untuk menampilkan pesan di UI (Pengganti alert())
+        function showMessage(text, type = 'Success') {
+            const colors = {
+                'Success': 'bg-green-100 text-green-800 border-green-500',
+                'Error': 'bg-red-100 text-red-800 border-red-500',
+                'Info': 'bg-blue-100 text-blue-800 border-blue-500'
+            };
+
+            const colorClass = colors[type] || colors['Info'];
+
+            const messageHtml = `
+                <div class="p-4 rounded-lg shadow-xl border-l-4 ${colorClass} transition-opacity duration-300">
+                    <div class="font-bold">${type}</div>
+                    <div>${text}</div>
+                </div>
+            `;
+            messageArea.innerHTML = messageHtml;
+            messageArea.classList.remove('hidden');
+
+            setTimeout(() => {
+                messageArea.classList.add('hidden');
+                messageArea.innerHTML = '';
+            }, 3000); // Pesan hilang setelah 3 detik
+        }
+
+        // Fungsi untuk menampilkan detail postingan
+        function showPostDetail(post) {
+            detailTitle.textContent = post.title;
+            detailMeta.textContent = post.date;
+            detailContent.textContent = post.content;
+            
+            // Scroll ke tampilan detail
+            document.getElementById('post-detail-view').scrollIntoView({ behavior: 'smooth' });
+            
+            showMessage(`Melihat detail: "${post.title}"`, 'Info');
+        }
+
+        // Fungsi utama untuk merender daftar postingan
+        function renderPosts() {
+            postsContainer.innerHTML = ''; // Kosongkan kontainer
+
+            blogPosts.forEach(post => {
+                // Membuat elemen card untuk setiap postingan
+                const postElement = document.createElement('article');
+                postElement.className = "bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer flex flex-col justify-between";
+                
+                // Menambahkan event listener untuk menampilkan detail saat diklik
+                postElement.addEventListener('click', () => showPostDetail(post));
+
+                postElement.innerHTML = `
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2 hover:text-blue-600 transition-colors">
+                            ${post.title}
+                        </h2>
+                        <p class="text-sm text-gray-500 mb-4">${post.date}</p>
+                        <p class="text-gray-600">${post.summary}</p>
+                    </div>
+                `;
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        // Jalankan fungsi saat halaman dimuat
+        window.onload = function () {
+            // Set tahun di footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Render semua postingan
+            renderPosts();
+        };
+
+    </script>
+</body>
+</html>
